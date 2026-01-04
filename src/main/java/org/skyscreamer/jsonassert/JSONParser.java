@@ -27,6 +27,7 @@ public class JSONParser {
     // "A number can be represented as integer, real, or floating point. JSON does not support octal or hex
     // ... [or] NaN or Infinity".
     private static final String NUMBER_REGEX = "-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?";
+    private static final String BOOLEAN_REGEX = "true|false";
 
     private JSONParser() {}
 
@@ -45,7 +46,8 @@ public class JSONParser {
             return new JSONArray(s);
         }
         if (s.trim().startsWith("\"")
-                   || s.trim().matches(NUMBER_REGEX)) {
+                   || s.trim().matches(NUMBER_REGEX)
+                   || s.trim().matches(BOOLEAN_REGEX)) {
           return new JSONString() {
             @Override
             public String toJSONString() {
