@@ -41,9 +41,10 @@ public class JSONParser {
         if (s.trim().startsWith("{")) {
             return new JSONObject(s);
         }
-        else if (s.trim().startsWith("[")) {
+        if (s.trim().startsWith("[")) {
             return new JSONArray(s);
-        } else if (s.trim().startsWith("\"")
+        }
+        if (s.trim().startsWith("\"")
                    || s.trim().matches(NUMBER_REGEX)) {
           return new JSONString() {
             @Override
